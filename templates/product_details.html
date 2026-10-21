@@ -1,0 +1,48 @@
+ {% load static %}
+ {% include 'header.html' %}
+<body>
+
+ 
+
+<main class="product" id="product"
+      data-id="1" data-name="Boxy Oversized Tee" data-price="899" data-checkout="checkout.html">
+
+  <div class="gallery">
+    <div class="photo" id="photo" style="--bg:#ffe14d">
+       <img src="{{ single_product.image.url }}" alt="{{ product.name }}">
+       
+      <span class="tag">New</span>
+    </div>
+  </div>
+
+  <div class="detail">
+    <h1>{{single_product.name}}</h1>
+    <p class="price">₹ {{single_product.price}} <s>₹1,199</s> <span class="save">Save 25%</span></p>
+    <p class="lead">{{single_product.description}} A heavyweight tee with a dropped shoulder and a roomy boxy fit. Wear it loose, tuck it in, or layer it under a hoodie.</p>
+
+    <div class="buttons">
+      {% if single_product.stock <= 0 %}
+       <button class="btn ghost">Out Of Stock !</button>
+       {% else %}
+      <button class="btn ghost" id="addBtn">Add to cart</button>
+      <button class="btn" id="buyBtn">Buy now</button>
+      {% endif %}
+    </div>
+
+    <h2>Details</h2>
+    <ul class="specs">
+      <li><b>Fabric</b><span>100% combed cotton, 240 GSM</span></li>
+      <li><b>Fit</b><span>Oversized, true to size. Size down for a regular fit.</span></li>
+      <li><b>Care</b><span>Machine wash cold, dry in shade</span></li>
+      <li><b>Delivery</b><span>3–5 days. Free over ₹1999.</span></li>
+      <li><b>Returns</b><span>7-day easy returns</span></li>
+    </ul>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Django: {% static 'js/product.js' %} -->
+ {% include 'footer.html' %}
+</body>
+</html>

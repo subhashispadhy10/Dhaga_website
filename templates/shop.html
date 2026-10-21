@@ -1,0 +1,54 @@
+{% include 'header.html' %}
+
+<body>
+    <section class="shop" id="shop">
+    <div class="shop-head">
+      <h2>The Sales !!</h2>
+      <div class="tools">
+        <input type="search" id="search" placeholder="Search pieces" aria-label="Search products">
+        <select id="sort" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="chips" id="chips" role="group" aria-label="Filter by category">
+      <a href="{% url 'shop' %}" ><button  class="chip  "  data-cat="all"> All </button></a>
+      {% for i in category %}
+      <a href="{% url 'category_slug' i.slug %}"><button class="chip {% if select_category == 'i.slug' %}on{% endif %}" data-cat="clothing">{{i.category_name}}</button></a>
+      {% endfor %}
+    </div>
+
+    <!-- Django: {% for p in products %} ... {% endfor %} -->
+ <div class="grid" id="grid">
+  {% for i in product %}
+  <article class="card" data-id=" " data-name=" "
+           data-price=" " data-cat=" ">
+  <a href="{% url 'product_details' i.category.category_name|lower i.slug %}">
+    <div class="thumb" style="--bg:#ececec">
+      <img src="{{ i.image.url }}" alt="{{ i.name }}" loading="lazy">
+       <span class="tag">New</span> 
+    </div>
+    </a>
+    <div class="info">
+      <h3>{{ i.name }}</h3>
+      <p class="price">₹ {{i.price}} <s>₹ 1999</s> </p>
+      <button class="add">Add to cart</button>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+      
+       
+      
+       
+      
+    </div>
+    <p class="empty" id="empty" hidden>No pieces match your search. Clear the search or pick another category.</p>
+  </section>
+
+  {% include 'footer.html' %}
+</body>

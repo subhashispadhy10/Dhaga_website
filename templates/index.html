@@ -1,0 +1,118 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Clothes that start conversations.</h1>
+      <p>Boxy tees, heavy hoodies and sneakers you'll actually wear every day. Small drops, no restocks.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn">Shop the drop</a>
+        <a href="#why" class="btn ghost">How we make it</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="blk b1">👕</div>
+      <div class="blk b2">🧥</div>
+      <div class="blk b3">👟</div>
+      <div class="sticker">Drop 07<br><small>12 pieces only</small></div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div>
+    <span>Heavyweight cotton</span><span>Made in small batches</span><span>Unisex fits</span><span>Free shipping over ₹1999</span>
+    <span>Heavyweight cotton</span><span>Made in small batches</span><span>Unisex fits</span><span>Free shipping over ₹1999</span>
+  </div></div>
+
+  <section class="shop" id="shop">
+    <div class="shop-head">
+      <h2>The drop</h2>
+      <div class="tools">
+        <input type="search" id="search" placeholder="Search pieces" aria-label="Search products">
+        <select id="sort" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="chips" id="chips" role="group" aria-label="Filter by category">
+      <button class="chip on" data-cat="all">All</button>
+      <button class="chip" data-cat="clothing">Clothing</button>
+      <button class="chip" data-cat="footwear">Footwear</button>
+      <button class="chip" data-cat="accessories">Accessories</button>
+    </div>
+
+    <!-- Django: {% for p in products %} ... {% endfor %} -->
+    <div class="grid" id="grid">
+      <article class="card" data-id="1" data-name="Boxy Oversized Tee" data-price="899" data-cat="clothing">
+        <div class="thumb" style="--bg:#ffe14d">👕<span class="tag">New</span></div>
+        <div class="info"><h3>Boxy Oversized Tee</h3><p class="price">₹899 <s>₹1199</s></p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="2" data-name="Cargo Utility Pants" data-price="1999" data-cat="clothing">
+        <div class="thumb" style="--bg:#9be7c4">👖</div>
+        <div class="info"><h3>Cargo Utility Pants</h3><p class="price">₹1,999</p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="3" data-name="Heavyweight Hoodie" data-price="2499" data-cat="clothing">
+        <div class="thumb" style="--bg:#b8c2ff">🧥<span class="tag">Bestseller</span></div>
+        <div class="info"><h3>Heavyweight Hoodie</h3><p class="price">₹2,499 <s>₹2,999</s></p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="4" data-name="Chunky Street Sneakers" data-price="3299" data-cat="footwear">
+        <div class="thumb" style="--bg:#ff9fbd">👟</div>
+        <div class="info"><h3>Chunky Street Sneakers</h3><p class="price">₹3,299</p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="5" data-name="Canvas Slip-ons" data-price="1499" data-cat="footwear">
+        <div class="thumb" style="--bg:#ffe14d">🥿</div>
+        <div class="info"><h3>Canvas Slip-ons</h3><p class="price">₹1,499</p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="6" data-name="Dad Cap" data-price="599" data-cat="accessories">
+        <div class="thumb" style="--bg:#b8c2ff">🧢</div>
+        <div class="info"><h3>Dad Cap</h3><p class="price">₹599</p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="7" data-name="Everyday Tote" data-price="799" data-cat="accessories">
+        <div class="thumb" style="--bg:#9be7c4">👜<span class="tag">Low stock</span></div>
+        <div class="info"><h3>Everyday Tote</h3><p class="price">₹799</p>
+        <button class="add">Add to cart</button></div>
+      </article>
+      <article class="card" data-id="8" data-name="Sport Socks 3-pack" data-price="449" data-cat="accessories">
+        <div class="thumb" style="--bg:#ff9fbd">🧦</div>
+        <div class="info"><h3>Sport Socks 3-pack</h3><p class="price">₹449</p>
+        <button class="add">Add to cart</button></div>
+      </article>
+    </div>
+    <p class="empty" id="empty" hidden>No pieces match your search. Clear the search or pick another category.</p>
+  </section>
+
+  <section class="why" id="why">
+    <h2>Why Dhaga</h2>
+    <div class="why-grid">
+      <div><h3>Small batches</h3><p>Each drop is a few hundred pieces. When it's gone, it's gone.</p></div>
+      <div><h3>Heavy fabric</h3><p>240 GSM cotton that holds its shape wash after wash.</p></div>
+      <div><h3>Easy returns</h3><p>Doesn't fit? Send it back within 7 days for a refund or swap.</p></div>
+    </div>
+  </section>
+
+  <section class="join" id="join">
+    <h2>Get the next drop first</h2>
+    <p>One email per drop. No spam.</p>
+    <form id="newsletter">
+      <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <button class="btn" type="submit">Notify me</button>
+    </form>
+  </section>
+  {% include 'footer.html' %}
+</main>
+
+
+</body>
+</html>
