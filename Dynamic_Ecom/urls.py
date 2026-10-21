@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Home,name='home'),
     path('shop/',include('App.urls')),
+    path('cart/',include('Cart_App.urls')),
+    
 
 
 ]
