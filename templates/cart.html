@@ -5,65 +5,43 @@
   
 
 <main class="cart">
-  <h1>Your cart <small>3 items</small></h1>
+  <h1>Your cart <small>{{pc}} items</small></h1>
 
   <div class="items">
     <!-- Django: {% for item in cart_items %} ... {% empty %} <p class="empty">Your cart is empty.</p> {% endfor %} -->
-
+   {% for i in cart_item %}
     <article class="item">
       <div class="pic" style="--bg:#ffe14d">
-        <!-- Django: <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"> -->
-        <span>👕</span>
+        <img src="{{ i.cart_product.image.url }}" alt="{{ item.cart_product.name }}">
+         
       </div>
       <div class="meta">
-        <h2>Boxy Oversized Tee</h2>
-        <p class="unit">₹899 each</p>
-        <a href="#" class="rm">Remove</a>
+        <h2>{{i.cart_product.name}}</h2>
+        <p class="unit">₹{{i.cart_product.price}} each</p>
+        <a href="{% url 'remove_item' i.cart_product.id %}" class="rm">Remove</a>
       </div>
-      <form class="qty" method="post" action="#">
-        <!-- {% csrf_token %} -->
-        <button type="submit" name="action" value="dec" aria-label="Decrease quantity">−</button>
-        <span>2</span>
-        <button type="submit" name="action" value="inc" aria-label="Increase quantity">+</button>
-      </form>
-      <p class="line-total">₹1,798</p>
+      <div class="qty"   >
+       
+       <a href="{% url 'minus_cart' i.cart_product.id %}"><button type="submit"  >−</button></a> 
+        <span>{{i.quantity}}</span>
+        <a href="{% url 'add_cart' i.cart_product.id %}"><button type="submit"  >+</button></a>
+      </div>
+      <p class="line-total">₹{{i.sub_total}}</p>
     </article>
 
-    <article class="item">
-      <div class="pic" style="--bg:#9be7c4"><span>👖</span></div>
-      <div class="meta">
-        <h2>Cargo Utility Pants</h2>
-        <p class="unit">₹1,999 each</p>
-        <a href="#" class="rm">Remove</a>
-      </div>
-      <form class="qty" method="post" action="#">
-        <button type="submit" name="action" value="dec" aria-label="Decrease quantity">−</button>
-        <span>1</span>
-        <button type="submit" name="action" value="inc" aria-label="Increase quantity">+</button>
-      </form>
-      <p class="line-total">₹1,999</p>
-    </article>
+ {% endfor %}
 
-    <article class="item">
-      <div class="pic" style="--bg:#b8c2ff"><span>🧢</span></div>
-      <div class="meta">
-        <h2>Dad Cap</h2>
-        <p class="unit">₹599 each</p>
-        <a href="#" class="rm">Remove</a>
-      </div>
-      <form class="qty" method="post" action="#">
-        <button type="submit" name="action" value="dec" aria-label="Decrease quantity">−</button>
-        <span>1</span>
-        <button type="submit" name="action" value="inc" aria-label="Increase quantity">+</button>
-      </form>
-      <p class="line-total">₹599</p>
-    </article>
+ 
   </div>
 
   <section class="summary" aria-label="Order summary">
-    <div class="row"><span>Subtotal</span><span>₹4,396</span></div>
-    <div class="row"><span>Shipping</span><span>Free</span></div>
-    <div class="row total"><span>Total</span><span>₹4,396</span></div>
+    <div class="row"><span>Subtotal</span><span style="color: green;">₹{{amount}}</span></div>
+      {% if total > 1999 %}
+        <div class="row"><span>Shipping</span><span style="color: green;font-weight: 600;">Free</span></div>
+          {% else %}
+     <div class="row"><span>Shipping</span><span>₹40</span></div>
+    {% endif %}
+    <div class="row total"><span>Total</span><span style="color: green;">₹{{total}}</span></div>
     <p class="note">Taxes included. Free shipping on orders over ₹1999.</p>
     <a href="checkout.html" class="btn full">Proceed to buy</a>
   </section>
